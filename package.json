@@ -7,6 +7,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.0-beta.0",
+    "axios": "^0.27.2",
+    "drawflow": "^0.0.58",
+    "element-plus": "^2.2.2",
+    "sass": "~1.32.13",
+    "sass-loader": "^8.0.2",
     "vue": "^3.2.13"
   },
   "devDependencies": {

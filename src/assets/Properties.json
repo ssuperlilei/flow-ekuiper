@@ -1,0 +1,742 @@
+{
+  "source": {
+    "mqtt": {
+      "about": {
+        "trial": false,
+        "installed": true,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/rules/sinks/mqtt.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/rules/sinks/mqtt.md"
+        },
+        "description": {
+          "en": "The action is used for publish output message into an MQTT server.",
+          "zh": "该操作用于将输出消息发布到 MQTT 服务器中"
+        }
+      },
+      "libs": null,
+      "properties": [
+        {
+          "exist": false,
+          "name": "server",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "The broker address of the MQTT server, such as tcp://127.0.0.1:1883.",
+            "zh": "MQTT 服务器地址，例如 tcp://127.0.0.1:1883"
+          },
+          "label": {
+            "en": "MQTT broker address",
+            "zh": "MQTT 服务器地址"
+          }
+        },
+        {
+          "exist": false,
+          "name": "topic",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "The MQTT topic, such as analysis/result",
+            "zh": "MQTT 主题，例如 analysis/result"
+          },
+          "label": {
+            "en": "MQTT topic",
+            "zh": "MQTT 主题"
+          }
+        },
+        {
+          "exist": false,
+          "name": "clientId",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The client id for MQTT connection. If not specified, an uuid will be used",
+            "zh": "MQTT 连接的客户端 ID。 如果未指定，将使用一个 uuid"
+          },
+          "label": {
+            "en": "MQTT ClientID",
+            "zh": "MQTT 客户端标识符(ClinetID)"
+          }
+        },
+        {
+          "exist": false,
+          "name": "protocolVersion",
+          "default": null,
+          "type": "string",
+          "control": "select",
+          "connection_related": true,
+          "optional": true,
+          "values": ["3.1", "3.1.1"],
+          "hint": {
+            "en": "MQTT protocol version. 3.1 (also refer as MQTT 3) or 3.1.1 (also refer as MQTT 4).  If not specified, the default value is 3.1.",
+            "zh": "MQTT 协议版本。3.1 (也被称为 MQTT 3) 或者 3.1.1 (也被称为 MQTT 4)。 如果未指定，缺省值为 3.1。"
+          },
+          "label": {
+            "en": "MQTT protocol version",
+            "zh": "MQTT 协议版本"
+          }
+        },
+        {
+          "exist": false,
+          "name": "qos",
+          "default": null,
+          "type": "list_int",
+          "control": "select",
+          "connection_related": false,
+          "optional": true,
+          "values": [0, 1, 2],
+          "hint": {
+            "en": "The QoS for message delivery.",
+            "zh": "消息转发的服务质量"
+          },
+          "label": {
+            "en": "QoS",
+            "zh": "QoS"
+          }
+        },
+        {
+          "exist": false,
+          "name": "username",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The username for the connection.",
+            "zh": "连接用户名"
+          },
+          "label": {
+            "en": "Username",
+            "zh": "用户名"
+          }
+        },
+        {
+          "exist": false,
+          "name": "password",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The password for the connection.",
+            "zh": "连接密码。"
+          },
+          "label": {
+            "en": "Password",
+            "zh": "密码"
+          }
+        },
+        {
+          "exist": false,
+          "name": "certificationPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The certification path. It can be an absolute path, or a relative path. If it is an relative path, then the base path is where you excuting the kuiperd command. For example, if you run bin/kuiperd from /var/kuiper, then the base path is /var/kuiper; If you run ./kuiperd from /var/kuiper/bin, then the base path is /var/kuiper/bin.",
+            "zh": "证书路径。可以为绝对路径，也可以为相对路径。如果指定的是相对路径，那么父目录为执行 kuiperd 命令的路径。比如，如果你在 /var/kuiper 中运行 bin/kuiperd ，那么父目录为 /var/kuiper; 如果运行从 /var/kuiper/bin 中运行./kuiperd，那么父目录为 /var/kuiper/bin"
+          },
+          "label": {
+            "en": "Certification path",
+            "zh": "证书路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "privateKeyPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The private key path. It can be either absolute path, or relative path, which is similar to use of certificationPath.",
+            "zh": "私钥路径。可以为绝对路径，也可以为相对路径，相对路径的用法与 certificationPath 类似"
+          },
+          "label": {
+            "en": "Private key path",
+            "zh": "私钥路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "rootCaPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The location of root ca path. It can be an absolute path, or a relative path. ",
+            "zh": "根证书路径，用以验证服务器证书。可以为绝对路径，也可以为相对路径。"
+          },
+          "label": {
+            "en": "Root Ca path",
+            "zh": "根证书路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "insecureSkipVerify",
+          "default": null,
+          "type": "bool",
+          "control": "radio",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "If InsecureSkipVerify is true, TLS accepts any certificate presented by the server and any host name in that certificate.  In this mode, TLS is susceptible to man-in-the-middle attacks. The default value is false. The configuration item can only be used with TLS connections.",
+            "zh": "如果 InsecureSkipVerify 设置为 true, TLS接受服务器提供的任何证书以及该证书中的任何主机名。 在这种模式下，TLS容易受到中间人攻击。默认值为false。配置项只能用于TLS连接。"
+          },
+          "label": {
+            "en": "Skip Certification verification",
+            "zh": "跳过证书验证"
+          }
+        }
+      ]
+    },
+    "zmq": {
+      "about": {
+        "trial": true,
+        "installed": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/plugins/sinks/zmq.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
+        },
+        "description": {
+          "en": "This a demo 0MQ sink plugin, it cannot be used in production env.",
+          "zh": "本插件为演示 ZMQ 数据发送插件，不能使用在生产环境中"
+        }
+      },
+      "libs": ["github.com/pebbe/zmq4@v1.0.0"],
+      "properties": [
+        {
+          "exist": false,
+          "name": "server",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "The url of the Zero Mq server",
+            "zh": "Zero Mq 服务器的 URL"
+          },
+          "label": {
+            "en": "Server address",
+            "zh": "服务器地址"
+          }
+        },
+        {
+          "exist": false,
+          "name": "topic",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The topic to publish to.",
+            "zh": "订阅主题"
+          },
+          "label": {
+            "en": "Topic",
+            "zh": "主题"
+          }
+        }
+      ]
+    }
+  },
+  "function": {
+    "butterworth": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Example python plugin for butterworth filter",
+          "zh": "示例python插件IRR滤波-巴特沃斯滤波"
+        }
+      },
+      "functions": [
+        {
+          "name": "butterworth",
+          "example": "butterworth(data, sample_rate, filter_band, type, order)",
+          "hint": {
+            "en": "Apply butterworth filter",
+            "zh": "巴特沃斯滤波。"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input signal data",
+                "zh": "输入信号数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "sample_rate",
+              "optional": false,
+              "control": "text",
+              "type": "number",
+              "hint": {
+                "en": "Sample rate",
+                "zh": "采样率"
+              },
+              "label": {
+                "en": "Sample rate",
+                "zh": "采样率"
+              }
+            },
+            {
+              "name": "filter_band",
+              "optional": false,
+              "control": "text",
+              "type": "any",
+              "hint": {
+                "en": "Filter band",
+                "zh": "滤波器带宽"
+              },
+              "label": {
+                "en": "Filter band",
+                "zh": "滤波器带宽"
+              }
+            },
+            {
+              "name": "type",
+              "optional": false,
+              "control": "select",
+              "type": "number",
+              "hint": {
+                "en": "Filter type",
+                "zh": "滤波器类型"
+              },
+              "label": {
+                "en": "Filter type",
+                "zh": "滤波器类型"
+              }
+            },
+            {
+              "name": "order",
+              "optional": false,
+              "default": 5,
+              "control": "select",
+              "type": "number",
+              "hint": {
+                "en": "Filter order",
+                "zh": "滤波器阶数"
+              },
+              "label": {
+                "en": "Filter order",
+                "zh": "滤波器阶数"
+              },
+              "values": [1, 2, 3, 4, 5]
+            }
+          ],
+          "return": {
+            "type": "array",
+            "hint": {
+              "en": "Filtered data",
+              "zh": "滤波后的数据"
+            }
+          },
+          "ui": {
+            "category": "函数/滤波",
+            "icon": "iconPath",
+            "label": "IIR滤波",
+            "color": "red"
+          }
+        }
+      ]
+    }
+  },
+  "sink": {
+    "mqtt": {
+      "about": {
+        "trial": false,
+        "installed": true,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/rules/sinks/mqtt.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/rules/sinks/mqtt.md"
+        },
+        "description": {
+          "en": "The action is used for publish output message into an MQTT server.",
+          "zh": "该操作用于将输出消息发布到 MQTT 服务器中"
+        }
+      },
+      "libs": null,
+      "properties": [
+        {
+          "exist": false,
+          "name": "server",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "The broker address of the MQTT server, such as tcp://127.0.0.1:1883.",
+            "zh": "MQTT 服务器地址，例如 tcp://127.0.0.1:1883"
+          },
+          "label": {
+            "en": "MQTT broker address",
+            "zh": "MQTT 服务器地址"
+          }
+        },
+        {
+          "exist": false,
+          "name": "topic",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "The MQTT topic, such as analysis/result",
+            "zh": "MQTT 主题，例如 analysis/result"
+          },
+          "label": {
+            "en": "MQTT topic",
+            "zh": "MQTT 主题"
+          }
+        },
+        {
+          "exist": false,
+          "name": "clientId",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The client id for MQTT connection. If not specified, an uuid will be used",
+            "zh": "MQTT 连接的客户端 ID。 如果未指定，将使用一个 uuid"
+          },
+          "label": {
+            "en": "MQTT ClientID",
+            "zh": "MQTT 客户端标识符(ClinetID)"
+          }
+        },
+        {
+          "exist": false,
+          "name": "protocolVersion",
+          "default": null,
+          "type": "string",
+          "control": "select",
+          "connection_related": true,
+          "optional": true,
+          "values": ["3.1", "3.1.1"],
+          "hint": {
+            "en": "MQTT protocol version. 3.1 (also refer as MQTT 3) or 3.1.1 (also refer as MQTT 4).  If not specified, the default value is 3.1.",
+            "zh": "MQTT 协议版本。3.1 (也被称为 MQTT 3) 或者 3.1.1 (也被称为 MQTT 4)。 如果未指定，缺省值为 3.1。"
+          },
+          "label": {
+            "en": "MQTT protocol version",
+            "zh": "MQTT 协议版本"
+          }
+        },
+        {
+          "exist": false,
+          "name": "qos",
+          "default": null,
+          "type": "list_int",
+          "control": "select",
+          "connection_related": false,
+          "optional": true,
+          "values": [0, 1, 2],
+          "hint": {
+            "en": "The QoS for message delivery.",
+            "zh": "消息转发的服务质量"
+          },
+          "label": {
+            "en": "QoS",
+            "zh": "QoS"
+          }
+        },
+        {
+          "exist": false,
+          "name": "username",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The username for the connection.",
+            "zh": "连接用户名"
+          },
+          "label": {
+            "en": "Username",
+            "zh": "用户名"
+          }
+        },
+        {
+          "exist": false,
+          "name": "password",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The password for the connection.",
+            "zh": "连接密码。"
+          },
+          "label": {
+            "en": "Password",
+            "zh": "密码"
+          }
+        },
+        {
+          "exist": false,
+          "name": "certificationPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The certification path. It can be an absolute path, or a relative path. If it is an relative path, then the base path is where you excuting the kuiperd command. For example, if you run bin/kuiperd from /var/kuiper, then the base path is /var/kuiper; If you run ./kuiperd from /var/kuiper/bin, then the base path is /var/kuiper/bin.",
+            "zh": "证书路径。可以为绝对路径，也可以为相对路径。如果指定的是相对路径，那么父目录为执行 kuiperd 命令的路径。比如，如果你在 /var/kuiper 中运行 bin/kuiperd ，那么父目录为 /var/kuiper; 如果运行从 /var/kuiper/bin 中运行./kuiperd，那么父目录为 /var/kuiper/bin"
+          },
+          "label": {
+            "en": "Certification path",
+            "zh": "证书路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "privateKeyPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The private key path. It can be either absolute path, or relative path, which is similar to use of certificationPath.",
+            "zh": "私钥路径。可以为绝对路径，也可以为相对路径，相对路径的用法与 certificationPath 类似"
+          },
+          "label": {
+            "en": "Private key path",
+            "zh": "私钥路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "rootCaPath",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "The location of root ca path. It can be an absolute path, or a relative path. ",
+            "zh": "根证书路径，用以验证服务器证书。可以为绝对路径，也可以为相对路径。"
+          },
+          "label": {
+            "en": "Root Ca path",
+            "zh": "根证书路径"
+          }
+        },
+        {
+          "exist": false,
+          "name": "insecureSkipVerify",
+          "default": null,
+          "type": "bool",
+          "control": "radio",
+          "connection_related": true,
+          "optional": true,
+          "values": null,
+          "hint": {
+            "en": "If InsecureSkipVerify is true, TLS accepts any certificate presented by the server and any host name in that certificate.  In this mode, TLS is susceptible to man-in-the-middle attacks. The default value is false. The configuration item can only be used with TLS connections.",
+            "zh": "如果 InsecureSkipVerify 设置为 true, TLS接受服务器提供的任何证书以及该证书中的任何主机名。 在这种模式下，TLS容易受到中间人攻击。默认值为false。配置项只能用于TLS连接。"
+          },
+          "label": {
+            "en": "Skip Certification verification",
+            "zh": "跳过证书验证"
+          }
+        }
+      ]
+    }
+  },
+  "chart": {
+    "line": {
+      "about": {
+        "trial": true,
+        "installed": true,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/plugins/sinks/zmq.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
+        },
+        "description": {
+          "en": "Line configuration",
+          "zh": "折线图配置"
+        }
+      },
+      "libs": null,
+      "properties": [
+        {
+          "exist": false,
+          "name": "y",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+          "label": { "en": "y-axis", "zh": "y-axis" }
+        },
+        {
+          "exist": false,
+          "name": "x",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+          "label": { "en": "x-axis", "zh": "x-axis" }
+        },
+        {
+          "exist": false,
+          "name": "title",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+          "label": { "en": "Title", "zh": "标题" }
+        }
+      ]
+    }
+  },
+  "bar": {
+    "about": {
+      "trial": true,
+      "installed": true,
+      "author": {
+        "name": "EMQ",
+        "email": "contact@emqx.io",
+        "company": "EMQ Technologies Co., Ltd",
+        "website": "https://www.emqx.io"
+      },
+      "helpUrl": {
+        "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/plugins/sinks/zmq.md",
+        "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
+      },
+      "description": {
+        "en": "Bar configuration",
+        "zh": "柱状图配置"
+      }
+    },
+    "libs": null,
+    "properties": [
+      {
+        "exist": false,
+        "name": "y",
+        "default": null,
+        "type": "string",
+        "control": "text",
+        "connection_related": false,
+        "optional": false,
+        "values": null,
+        "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+        "label": { "en": "y-axis", "zh": "y-axis" }
+      },
+      {
+        "exist": false,
+        "name": "x",
+        "default": null,
+        "type": "string",
+        "control": "text",
+        "connection_related": false,
+        "optional": false,
+        "values": null,
+        "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+        "label": { "en": "x-axis", "zh": "x-axis" }
+      },
+      {
+        "exist": false,
+        "name": "title",
+        "default": null,
+        "type": "string",
+        "control": "text",
+        "connection_related": false,
+        "optional": false,
+        "values": null,
+        "hint": { "en": "The url of the Zero Mq server", "zh": "Zero Mq 服务器的 URL" },
+        "label": { "en": "Title", "zh": "标题" }
+      }
+    ]
+  }
+}
