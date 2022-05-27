@@ -1,13 +1,19 @@
 <template>
   <div class="flow-sidebar">
     <div className="search-bar">
-      <el-input v-model="searchValue" suffix-icon="Search" placeholder="Enter something..." @change="handlerSearch" />
+      <el-input
+        clearable
+        v-model="searchValue"
+        suffix-icon="Search"
+        placeholder="Enter something..."
+        @change="handlerSearch"
+      />
     </div>
     <template v-for="group in groups">
       <div class="group-name">
         {{ group.groupName }}
       </div>
-      <div v-for="node in dndNodes.filter((dndNode) => dndNode.group === group.groupValue)">
+      <div v-for="node in showNodes.filter((dndNode) => dndNode.group === group.groupValue)">
         <div
           :class="['dndnode', node.type]"
           draggable="true"
@@ -21,39 +27,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import loadDndNodes from '@/utils/loadDndNodes'
+import _ from 'lodash'
 import { ref } from 'vue'
 
-export default {
-  setup() {
-    const groups = ref([])
-    const dndNodes = ref([])
-    const searchValue = ref('')
+const groups = ref([])
+const dndNodes = ref([])
+const searchValue = ref('')
+const showNodes = ref([])
 
-    groups.value = loadDndNodes().groups
-    dndNodes.value = loadDndNodes().dndNodes
+groups.value = loadDndNodes().groups
+dndNodes.value = loadDndNodes().dndNodes
+showNodes.value = _.cloneDeep(dndNodes.value)
 
-    const handlerSearch = (value) => {
-      console.log(value)
-    }
-
-    const dragstart = (event, node) => {
-      event.dataTransfer.setData('getNodeName', node.value)
-      event.dataTransfer.setData('getNodeLabel', node.label)
-      event.dataTransfer.setData('getNodeType', node.type)
-      event.dataTransfer.setData('getNodeGroup', node.group)
-      event.dataTransfer.effectAllowed = 'move'
-    }
-
-    return {
-      groups,
-      dndNodes,
-      searchValue,
-      handlerSearch,
-      dragstart,
-    }
+const handlerSearch = (value) => {
+  if (value) {
+    showNodes.value = dndNodes.value.filter((node) => node.label.includes(value))
+  } else {
+   showNodes.value = _.cloneDeep(dndNodes.value) 
   }
+}
+
+const dragstart = (event, node) => {
+  event.dataTransfer.setData('getNodeName', node.value)
+  event.dataTransfer.setData('getNodeLabel', node.label)
+  event.dataTransfer.setData('getNodeType', node.type)
+  event.dataTransfer.setData('getNodeGroup', node.group)
+  event.dataTransfer.effectAllowed = 'move'
 }
 </script>
 

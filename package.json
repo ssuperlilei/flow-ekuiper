@@ -11,6 +11,7 @@
     "axios": "^0.27.2",
     "drawflow": "^0.0.58",
     "element-plus": "^2.2.2",
+    "loadsh": "^0.0.4",
     "sass": "~1.32.13",
     "sass-loader": "^8.0.2",
     "vue": "^3.2.13"
