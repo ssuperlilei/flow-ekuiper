@@ -17,7 +17,6 @@
               v-model="record[property.name]"
               :type="property.name === 'password' ? 'password' : 'text'"
               :password="property.name === 'password'"
-              size="large"
               :placeholder="property.default ? property.default.toString() : ''"
             ></el-input>
             <!-- Textarea -->
@@ -25,7 +24,6 @@
               v-if="property.control === 'textarea' && property.type !== 'int'"
               v-model="record[property.name]"
               type="textarea"
-              size="large"
               :rows="3"
               :placeholder="property.default ? property.default.toString() : ''"
             ></el-input>
@@ -34,7 +32,6 @@
               v-model.number="record[property.name]"
               v-if="property.control === 'text' && property.type === 'int'"
               type="number"
-              size="large"
               :placeholder="property.default ? property.default.toString() : ''"
             ></el-input>
             <!-- Boolean -->
@@ -51,7 +48,6 @@
             <el-select
               v-if="property.control === 'select'"
               v-model="record[property.name]"
-              size="large"
               :placeholder="property.default ? property.default.toString() : ''"
               clearable
             >
@@ -60,7 +56,6 @@
             <el-select
               v-if="property.control === 'col_selector' && property.type === 'array'"
               v-model="record[property.name]"
-              size="large"
               :placeholder="property.default ? property.default.toString() : ''"
               filterable
               multiple
@@ -104,34 +99,24 @@ export default defineComponent({
       () => props.node,
       () => {
         if (props.node.data) {
-          if (props.node.data.name) {
-            const _schema = Schema[props.node.data.group]
-            const currentSchema = _schema[props.node.data.name]
-            if (currentSchema.properties) {
-              schema.value = currentSchema.properties
-              schemaDesc.value = currentSchema.about.description[lang.value]
-            } else if (currentSchema.functions) {
-              schema.value = currentSchema.functions[0].args
-              schemaDesc.value = currentSchema.functions[0].hint[lang.value]
-            } else {
-              schema.value = []
-              schemaDesc.value = null
-            }
-            schema.value.forEach((item) => {
-              if (item.default) {
-                record.value[item.name] = item.default
-              }
-            })
+          if (props.node.data.properties) {
+             schema.value = props.node.data.properties
           } else {
             schema.value = []
-            schemaDesc.value = null
+          }
+          if (props.node.data.schemaDesc) {
+             schemaDesc.value = props.node.data.schemaDesc
+          } else {
+            schemaDesc.value = ''
           }
           if (props.node.data.record) {
             record.value = props.node.data.record
+          } else {
+            record.value = {}
           }
         } else {
           schema.value = []
-          schemaDesc.value = null
+          schemaDesc.value = ''
         }
       },
       {
@@ -173,7 +158,7 @@ export default defineComponent({
   }
   .el-form {
     .el-form-item__label {
-      color: #fff;
+      color: #a8acb6;
     }
     .el-tooltip__trigger {
       &.field-help {
@@ -183,6 +168,9 @@ export default defineComponent({
         top: 3px;
         left: 2px;
       }
+    }
+    .el-button {
+      margin-bottom: 10px;
     }
   }
   .no-config {

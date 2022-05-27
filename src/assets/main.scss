@@ -7,71 +7,111 @@ html {
   color: #a8acb6;
 }
 
-// .page-header {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 40px;
+// /* Select */
+// .ivu-select,
+// .ivu-select-input {
 //   color: var(--color-text-title);
-//   h1 {
-//     font-size: 18px;
-//   }
-//   .mode-swtich {
-//     label {
-//       margin-right: 20px;
-//       font-size: 18px;
-//     }
-//   }
 // }
-
-// p {
-//   word-break: break-word;
+// .ivu-select-selection {
+//   background-color: transparent;
+//   border: 1px solid var(--color-border-normal);
 // }
-
-// .top-oper {
-//   display: flex;
-//   button {
-//     margin-left: 10px;
-//   }
+// .ivu-select-disabled .ivu-select-selection {
+//   background-color: transparent;
+//   color: var(--color-text-title);
 // }
-// .top-create--btn {
-//   float: right;
-//   margin-bottom: 20px;
+// .ivu-select-single .ivu-select-selection .ivu-select-placeholder {
+//   color: #5f636d;
 // }
-
-// .view-form {
-//   .view-item {
-//     margin-bottom: 15px;
-//     color: var(--color-text-title);
-
-//     &:last-child {
-//       margin-bottom: 0px;
-//     }
+// .ivu-select .ivu-select-dropdown {
+//   max-width: 100% !important;
+//   max-height: 300px;
+// }
+// .ivu-select.custom-select .ivu-select-item {
+//   border-bottom: 1px solid #e8eaec;
+//   &:last-child {
+//     border-bottom: 0px;
 //   }
-
-//   .view-item--table {
-//     margin: 14px 0;
+//   .title {
+//     font-weight: 500;
+//     font-size: 16px;
+//     padding: 0 2px;
 //   }
-
-//   .view-item--label {
-//     margin-right: 10px;
-//     color: #a8acb6;
-//     font-weight: 600;
+//   .tag {
+//     float: right;
+//   }
+//   .info {
+//     padding-top: 10px;
+//     color: #848484;
+//     padding: 10px 2px 0px 2px;
+//   }
+//   .description {
+//     padding: 16px 0px 12px 0px;
+//     white-space: break-spaces;
+//     line-height: 1.5;
 //   }
 // }
 
-// .right-item {
-//   float: right;
+// /* Input */
+// .ivu-input {
+//   background: transparent;
+//   border: 1px solid var(--color-border-normal);
+//   color: var(--color-text-title);
 // }
-
-// .left-item {
-//   float: left;
+// .ivu-input[disabled],
+// fieldset[disabled] .ivu-input {
+//   background-color: transparent;
+//   color: var(--color-text-title);
 // }
-
-// .tip-block {
-//   .ivu-icon {
-//     font-size: 18px;
-//     margin-right: 5px;
-//     color: #ffc600;
+// .ivu-select-input,
+// .ivu-input-number-input,
+// .ivu-input {
+//   &::placeholder {
+//     color: #5f636d;
 //   }
-//   color: #a8acb6;
+//   &::-webkit-input-placeholder {
+//     /* WebKit browsers 适配谷歌 */
+//     color: #5f636d;
+//   }
+//   &:-moz-placeholder {
+//     /* Mozilla Firefox 4 to 18 适配火狐 */
+//     color: #5f636d;
+//   }
+//   &::-moz-placeholder {
+//     /* Mozilla Firefox 19+ 适配火狐 */
+//     color: #5f636d;
+//   }
+//   &:-ms-input-placeholder {
+//     /* Internet Explorer 10+  适配ie*/
+//     color: #5f636d;
+//   }
+// }
+// textarea.ivu-input {
+//   font-size: 16px;
+// }
+
+// /* InputNumber */
+// .ivu-input-number {
+//   width: 100%;
+// }
+// .ivu-input-number,
+// .ivu-input-number-input {
+//   background: transparent;
+//   border: 1px solid var(--color-border-normal);
+//   color: var(--color-text-title);
+// }
+// .ivu-input-number-handler-wrap {
+//   background-color: transparent;
+//   color: var(--color-text-title);
+//   border: none;
+//   .ivu-input-number-handler-down {
+//     border-top: none;
+//   }
+// }
+// .ivu-input-number-disabled {
+//   background-color: transparent;
+//   color: var(--color-text-title);
+//   .ivu-input-number-input {
+//     background-color: transparent;
+//   }
 // }

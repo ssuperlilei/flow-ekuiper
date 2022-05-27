@@ -3,14 +3,14 @@
     <flow-sidebar class="sidebar"></flow-sidebar>
     <div id="drawflow" @drop="drop" @dragover="allowDrop"></div>
     <div class="config-card">
-      <ConfigCard :node="selectNode" @save="onSave" @restore="onRestore" @upload="uploadNodes"></ConfigCard>
+      <ConfigCard :node="selectNode" @save="onSave" @restore="onRestore" @show="onShow" @upload="uploadNodes"></ConfigCard>
     </div>
     <div class="controls">
-      <el-icon v-if="isLock" size="24" @click="changeLock" ><Lock /></el-icon>
-      <el-icon v-else size="24" @click="changeLock" ><Unlock /></el-icon>
-      <el-icon size="24" @click="zoomOut" ><ZoomOut /></el-icon>
-      <el-icon size="24" @click="zoomReset" ><Refresh /></el-icon>
-      <el-icon size="24" @click="zoomIn" ><ZoomIn /></el-icon>
+      <el-icon v-if="isLock" @click="changeLock" title="解锁" ><Lock /></el-icon>
+      <el-icon v-else @click="changeLock" title="锁定" ><Unlock /></el-icon>
+      <el-icon @click="zoomOut" title="缩小" ><ZoomOut /></el-icon>
+      <el-icon @click="zoomReset" title="恢复" ><Refresh /></el-icon>
+      <el-icon @click="zoomIn" title="放大" ><ZoomIn /></el-icon>
     </div>
   </div>
 </template>
@@ -19,7 +19,10 @@ import Drawflow from 'drawflow'
 import FlowSidebar from '@/components/FlowSidebar.vue'
 import ConfigCard from '@/components/ConfigCard.vue'
 import BasicNode from '@/components/BasicNode.vue'
+import Schema from './assets/Properties.json'
 import { onMounted, shallowRef, h, getCurrentInstance, render, ref } from 'vue'
+import serializedUpload from '@/utils/uploadData'
+import deserializeNodes from '@/utils/handleNodes'
 
 export default {
   name: 'App',
@@ -29,10 +32,13 @@ export default {
   },
   setup() {
     const editor = shallowRef({})
+    const lang = ref('zh')
     const Vue = { version: 3, h, render }
     const internalInstance = getCurrentInstance()
     internalInstance.appContext.app._context.config.globalProperties.$df = editor
     const isLock = ref(false)
+    const properties = ref([])
+    const schemaDesc = ref('')
     const exportdf = () => {
       const data = editor.value.export()
       console.log(data)
@@ -51,10 +57,22 @@ export default {
       const label = ev.dataTransfer.getData('getNodeLabel')
       const type = ev.dataTransfer.getData('getNodeType')
       const group = ev.dataTransfer.getData('getNodeGroup')
-      addNodeToDrawFlow(name, ev.clientX, ev.clientY, label, type, group)
+      const _schema = Schema[group]
+      const currentSchema = _schema[name]
+      if (currentSchema.properties) {
+        properties.value = currentSchema.properties
+        schemaDesc.value = currentSchema.about.description[lang.value]
+      } else if (currentSchema.functions) {
+        properties.value = currentSchema.functions[0].args
+        schemaDesc.value = currentSchema.functions[0].hint[lang.value]
+      } else {
+        properties.value = []
+        schemaDesc.value = ''
+      }
+      addNodeToDrawFlow(name, ev.clientX, ev.clientY, label, type, group, properties.value, schemaDesc.value)
     }
 
-    const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group) => {
+    const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group, properties, schemaDesc) => {
       if (editor.value.editor_mode !== 'fixed') {
         // eslint-disable-next-line
         pos_x =
@@ -96,13 +114,14 @@ export default {
             label,
             type,
             group,
+            properties,
+            schemaDesc,
           },
           'BasicNode',
           'vue',
         )
       }
     }
-
     const onSave = () => {
       const exportValue = editor.value.export()
       localStorage.setItem('flowKey', JSON.stringify(exportValue))
@@ -111,8 +130,19 @@ export default {
       const flow = JSON.parse(localStorage.getItem('flowKey'))
       editor.value.import(flow)
     }
+    // 接口保存
     const uploadNodes = () => {
-      console.log('upload')
+      const exportValue = editor.value.export()
+      const data = exportValue.drawflow.Home.data
+      const flowData = serializedUpload(data)
+      localStorage.setItem('flowData', JSON.stringify(flowData))
+    }
+
+    // 测试接口获取的值，展示在页面上
+    const onShow = () => {
+      const flowData = JSON.parse(localStorage.getItem('flowData'))
+      const nodes = deserializeNodes(flowData.graph)
+      editor.value.import(nodes)
     }
     const changeLock = () => {
       isLock.value = !isLock.value
@@ -164,6 +194,7 @@ export default {
       onSave,
       onRestore,
       uploadNodes,
+      onShow,
       changeLock,
       zoomOut,
       zoomReset,
@@ -208,7 +239,9 @@ export default {
     position: absolute;
     top: 1%;
     right: 28%;
+    font-size: 20px;
     .el-icon {
+      margin-right: 5px;
       cursor: pointer;
     }
   }

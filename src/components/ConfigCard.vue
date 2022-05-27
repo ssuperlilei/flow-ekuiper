@@ -7,7 +7,7 @@
       <a @click="upload">
         <el-icon size="20" ><UploadFilled /></el-icon>
       </a>
-      <a>
+      <a @click="show">
         <el-icon size="20" ><VideoPlay /></el-icon>
       </a>
       <a @click="restore">
@@ -61,6 +61,9 @@ export default defineComponent({
     const upload = () => {
       emit('upload')
     }
+    const show = () => {
+      emit('show')
+    }
     const restore = () => {
       emit('restore')
     }
@@ -69,6 +72,7 @@ export default defineComponent({
       title,
       save,
       upload,
+      show,
       restore,
     }
   },
@@ -91,6 +95,7 @@ export default defineComponent({
     border-bottom: 1px solid #495062;
     display: flex;
     justify-content: space-between;
+    font-size: 20px;
     a {
       color: #fff;
       &:hover {
