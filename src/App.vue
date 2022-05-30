@@ -211,7 +211,7 @@ onMounted(() => {
     display: block;
     position: relative;
     width: 60%;
-    height: 800px;
+    height: 100%;
   }
   .controls {
     position: absolute;
