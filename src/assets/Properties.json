@@ -1,6 +1,6 @@
 {
   "source": {
-    "mqtt": {
+    "source_mqtt": {
       "about": {
         "trial": false,
         "installed": true,
@@ -276,6 +276,232 @@
           "label": {
             "en": "Topic",
             "zh": "主题"
+          }
+        }
+      ]
+    },
+    "CSV": {
+      "about": {
+        "trial": true,
+        "installed": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/plugins/sinks/zmq.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
+        },
+        "description": {
+          "en": "offline data.",
+          "zh": "离线数据"
+        }
+      },
+      "libs": [""],
+      "properties": [
+        {
+          "exist": false,
+          "name": "name",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "name",
+            "zh": "名称"
+          },
+          "label": {
+            "en": "name",
+            "zh": "名称"
+          }
+        },
+        {
+          "exist": false,
+          "name": "path",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "Path Selection",
+            "zh": "路径选择"
+          },
+          "label": {
+            "en": "Path Selection",
+            "zh": "路径选择"
+          }
+        },
+        {
+          "exist": false,
+          "name": "file",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "file selection",
+            "zh": "文件选择"
+          },
+          "label": {
+            "en": "file selection",
+            "zh": "文件选择"
+          }
+        },
+        {
+          "exist": false,
+          "name": "data_stream",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "data stream length",
+            "zh": "数据流长度"
+          },
+          "label": {
+            "en": "data stream length",
+            "zh": "数据流长度"
+          }
+        },
+        {
+          "exist": false,
+          "name": "desc",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "description",
+            "zh": "描述"
+          },
+          "label": {
+            "en": "description",
+            "zh": "描述"
+          }
+        }
+      ]
+    },
+    "TXT": {
+      "about": {
+        "trial": true,
+        "installed": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "helpUrl": {
+          "en": "https://github.com/lf-edge/ekuiper/blob/master/docs/en/plugins/sinks/zmq.md",
+          "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
+        },
+        "description": {
+          "en": "offline data.",
+          "zh": "离线数据"
+        }
+      },
+      "libs": [""],
+      "properties": [
+        {
+          "exist": false,
+          "name": "name",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "name",
+            "zh": "名称"
+          },
+          "label": {
+            "en": "name",
+            "zh": "名称"
+          }
+        },
+        {
+          "exist": false,
+          "name": "path",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "Path Selection",
+            "zh": "路径选择"
+          },
+          "label": {
+            "en": "Path Selection",
+            "zh": "路径选择"
+          }
+        },
+        {
+          "exist": false,
+          "name": "file",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "file selection",
+            "zh": "文件选择"
+          },
+          "label": {
+            "en": "file selection",
+            "zh": "文件选择"
+          }
+        },
+        {
+          "exist": false,
+          "name": "data_stream",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "data stream length",
+            "zh": "数据流长度"
+          },
+          "label": {
+            "en": "data stream length",
+            "zh": "数据流长度"
+          }
+        },
+        {
+          "exist": false,
+          "name": "desc",
+          "default": null,
+          "type": "string",
+          "control": "text",
+          "connection_related": false,
+          "optional": false,
+          "values": null,
+          "hint": {
+            "en": "description",
+            "zh": "描述"
+          },
+          "label": {
+            "en": "description",
+            "zh": "描述"
           }
         }
       ]
@@ -564,12 +790,540 @@
             }
           ]
         }
-        
+      ]
+    },
+    "clean_normal": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "normalization function",
+          "zh": "归一化函数"
+        }
+      },
+      "functions": [
+        {
+          "name": "clean_normal",
+          "example": "clean_normal(data, regression_type)",
+          "hint": {
+            "en": "normalization function",
+            "zh": "归一化函数"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input signal data",
+                "zh": "输入信号数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "regression_type",
+              "optional": false,
+              "default": 5,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "regression type",
+                "zh": "回归类型"
+              },
+              "label": {
+                "en": "regression type",
+                "zh": "回归类型"
+              },
+              "values": [0, 1, 2]
+            }
+          ]
+        }
+      ]
+    },
+    "clean_sort": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Data downsampling",
+          "zh": "数据降采样"
+        }
+      },
+      "functions": [
+        {
+          "name": "clean_sort",
+          "example": "clean_sort(array, range, sort_type)",
+          "hint": {
+            "en": "Data downsampling",
+            "zh": "数据降采样"
+          },
+          "args": [
+            {
+              "name": "array",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "range",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Range of data",
+                "zh": "取之范围"
+              },
+              "label": {
+                "en": "Range of data",
+                "zh": "取之范围"
+              },
+              "values": []
+            },
+            {
+              "name": "sort_type",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "regression type",
+                "zh": "回归类型"
+              },
+              "label": {
+                "en": "regression type",
+                "zh": "回归类型"
+              },
+              "values": [0, 1]
+            }
+          ]
+        }
+      ]
+    },
+    "dimension_reduction": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Data dimensionality reduction processing",
+          "zh": "数据降维处理"
+        }
+      },
+      "functions": [
+        {
+          "name": "dimension_reduction",
+          "example": "dimension_reduction(array, compression_ratio, method)",
+          "hint": {
+            "en": "Data dimensionality reduction processing",
+            "zh": "数据降维处理"
+          },
+          "args": [
+            {
+              "name": "array",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "compression_ratio",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Compression ratio",
+                "zh": "压缩比例"
+              },
+              "label": {
+                "en": "Compression ratio",
+                "zh": "压缩比例"
+              }
+            },
+            {
+              "name": "dimension_reduction",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Dimension reduction method",
+                "zh": "降维方式"
+              },
+              "label": {
+                "en": "Dimension reduction method",
+                "zh": "降维方式"
+              },
+              "values": [0, 1, 2, 3, 4]
+            }
+          ]
+        }
+      ]
+    },
+    "savitzky_golay": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Polynomial Fitting Smoothing",
+          "zh": "多项式拟合平滑法"
+        }
+      },
+      "functions": [
+        {
+          "name": "savitzky_golay",
+          "example": "savitzky_golay(data, degree)",
+          "hint": {
+            "en": "Polynomial Fitting Smoothing",
+            "zh": "多项式拟合平滑法"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "degree",
+              "optional": false,
+              "default": 2,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Degree of the polynomial used for smoothing",
+                "zh": "平滑程度"
+              },
+              "label": {
+                "en": "Degree of the polynomial used for smoothing",
+                "zh": "平滑程度"
+              },
+              "values": [0, 1, 2, 3, 4]
+            }
+          ]
+        }
+      ]
+    },
+    "fftTrans": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Calculate the Fourier transform (magnitude spectrum)",
+          "zh": "计算傅立叶变换（幅值谱）"
+        }
+      },
+      "functions": [
+        {
+          "name": "fftTrans",
+          "example": "fftTrans(signal, sample_rate, type)",
+          "hint": {
+            "en": "Calculate the Fourier transform (magnitude spectrum)",
+            "zh": "计算傅立叶变换（幅值谱）"
+          },
+          "args": [
+            {
+              "name": "signal",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "sample_rate",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Sample rate",
+                "zh": "采样频率"
+              },
+              "label": {
+                "en": "Sample rate",
+                "zh": "采样频率"
+              }
+            },
+            {
+              "name": "type",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Type",
+                "zh": "谱类型"
+              },
+              "label": {
+                "en": "Type",
+                "zh": "谱类型"
+              },
+              "values": [0, 1]
+            }
+          ]
+        }
+      ]
+    },
+    "fftPSD": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Calculate the Fourier transform (magnitude spectrum)",
+          "zh": "计算傅立叶变换（幅值谱）"
+        }
+      },
+      "functions": [
+        {
+          "name": "fftPSD",
+          "example": "fftPSD(signal, sample_rate, unit, method, type)",
+          "hint": {
+            "en": "Calculate the Fourier transform (magnitude spectrum)",
+            "zh": "计算傅立叶变换（幅值谱）"
+          },
+          "args": [
+            {
+              "name": "signal",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "sample_rate",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Sample rate",
+                "zh": "采样频率"
+              },
+              "label": {
+                "en": "Sample rate",
+                "zh": "采样频率"
+              }
+            },
+            {
+              "name": "unit",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Unit",
+                "zh": "单位"
+              },
+              "label": {
+                "en": "Unit",
+                "zh": "单位"
+              },
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "W/Hz",
+                  "zh": "W/Hz"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "dB",
+                  "zh": "dB"
+                }
+              }]
+            },
+            {
+              "name": "method",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "method",
+                "zh": "方法"
+              },
+              "label": {
+                "en": "method",
+                "zh": "方法"
+              },
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "direct method",
+                  "zh": "直接法"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "indirect method",
+                  "zh": "间接法"
+                }
+              }]
+            },
+            {
+              "name": "type",
+              "optional": false,
+              "default": 0,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Type",
+                "zh": "谱类型"
+              },
+              "label": {
+                "en": "Type",
+                "zh": "谱类型"
+              },
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "one-sided spectrum",
+                  "zh": "单边谱"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "bilateral spectrum",
+                  "zh": "双边谱"
+                }
+              }]
+            }
+          ]
+        }
+      ]
+    },
+    "peakVallydet": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Peak and valley detection",
+          "zh": "峰谷值检测"
+        }
+      },
+      "functions": [
+        {
+          "name": "peakVallydet",
+          "example": "peakVallydet(data, pthresh)",
+          "hint": {
+            "en": "Peak and valley detection",
+            "zh": "峰谷值检测"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "用户输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "thresh",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "The value is 0-1, float, indicating that the peak and trough are judged by the percentage of the highest value.",
+                "zh": "取值为0-1，float，表示以最值的百分比作为判断波峰波谷"
+              },
+              "label": {
+                "en": "Threshold percentage",
+                "zh": "阈值百分比"
+              }
+            }
+          ]
+        }
       ]
     }
   },
   "sink": {
-    "mqtt": {
+    "sink_mqtt": {
       "about": {
         "trial": false,
         "installed": true,

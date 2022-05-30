@@ -51,7 +51,7 @@
               :placeholder="property.default ? property.default.toString() : ''"
               clearable
             >
-              <el-option v-for="(value, index) in property.values" :key="index" :value="value">{{ value }}</el-option>
+              <el-option v-for="(item, index) in property.values" :key="index" :value="item.label ? item.value : item">{{ item.label ? item.label[lang] : item }}</el-option>
             </el-select>
             <el-select
               v-if="property.control === 'col_selector' && property.type === 'array'"
