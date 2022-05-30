@@ -324,7 +324,7 @@
               "name": "sample_rate",
               "optional": false,
               "control": "text",
-              "type": "number",
+              "type": "int",
               "hint": {
                 "en": "Sample rate",
                 "zh": "采样率"
@@ -352,7 +352,7 @@
               "name": "type",
               "optional": false,
               "control": "select",
-              "type": "number",
+              "type": "int",
               "hint": {
                 "en": "Filter type",
                 "zh": "滤波器类型"
@@ -360,14 +360,15 @@
               "label": {
                 "en": "Filter type",
                 "zh": "滤波器类型"
-              }
+              },
+              "values": [0, 1, 3, 4]
             },
             {
               "name": "order",
               "optional": false,
               "default": 5,
               "control": "select",
-              "type": "number",
+              "type": "int",
               "hint": {
                 "en": "Filter order",
                 "zh": "滤波器阶数"
@@ -393,6 +394,177 @@
             "color": "red"
           }
         }
+      ]
+    },
+    "chebyshev": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Example python plugin for chebyshev filter",
+          "zh": "示例python插件IRR滤波-使用切比雪夫滤波"
+        }
+      },
+      "functions": [
+        {
+          "name": "chebyshev",
+          "example": "chebyshev(data, fs, ftype, freqs, order, rp)",
+          "hint": {
+            "en": "Chebyshev filter design",
+            "zh": "使用切比雪夫滤波"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input signal data",
+                "zh": "输入信号数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "fs",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Sample rate",
+                "zh": "采样率"
+              },
+              "label": {
+                "en": "Sample rate",
+                "zh": "采样率"
+              }
+            },
+            {
+              "name": "ftype",
+              "optional": false,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Filter type",
+                "zh": "滤波器类型"
+              },
+              "label": {
+                "en": "Filter type",
+                "zh": "滤波器类型"
+              },
+              "values": [0, 1, 3, 4]
+            },
+            {
+              "name": "freqs",
+              "optional": false,
+              "control": "text",
+              "type": "any",
+              "hint": {
+                "en": "Filter band",
+                "zh": "滤波频率"
+              },
+              "label": {
+                "en": "Filter band",
+                "zh": "滤波频率"
+              }
+            },
+            {
+              "name": "order",
+              "optional": false,
+              "default": 5,
+              "control": "select",
+              "type": "int",
+              "hint": {
+                "en": "Filter order",
+                "zh": "滤波器阶数"
+              },
+              "label": {
+                "en": "Filter order",
+                "zh": "滤波器阶数"
+              }
+            },
+            {
+              "name": "rp",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Passband ripple",
+                "zh": "增益"
+              },
+              "label": {
+                "en": "Passband ripple",
+                "zh": "增益"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "clean_drop": {
+      "about": {
+        "trial": false,
+        "author": {
+          "name": "EMQ",
+          "email": "contact@emqx.io",
+          "company": "EMQ Technologies Co., Ltd",
+          "website": "https://www.emqx.io"
+        },
+        "description": {
+          "en": "Data downsampling",
+          "zh": "数据降采样"
+        }
+      },
+      "functions": [
+        {
+          "name": "clean_drop",
+          "example": "clean_drop(data, compression_ratio)",
+          "hint": {
+            "en": "Data downsampling",
+            "zh": "数据降采样"
+          },
+          "args": [
+            {
+              "name": "data",
+              "optional": false,
+              "control": "col_selector",
+              "type": "array",
+              "hint": {
+                "en": "Input signal data",
+                "zh": "输入信号数据"
+              },
+              "label": {
+                "en": "Input data",
+                "zh": "输入数据"
+              },
+              "values": []
+            },
+            {
+              "name": "compression_ratio",
+              "optional": false,
+              "control": "text",
+              "type": "int",
+              "hint": {
+                "en": "Compression ratio",
+                "zh": "压缩比例"
+              },
+              "label": {
+                "en": "Compression ratio",
+                "zh": "压缩比例"
+              }
+            }
+          ]
+        }
+        
       ]
     }
   },
