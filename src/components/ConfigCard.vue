@@ -2,16 +2,16 @@
   <div class="flow-config-card">
     <div class="config-header">
       <a @click="save">
-        <el-icon size="20" ><DocumentAdd /></el-icon>
+        <el-icon size="20"><DocumentAdd /></el-icon>
       </a>
       <a @click="upload">
-        <el-icon size="20" ><UploadFilled /></el-icon>
+        <el-icon size="20"><UploadFilled /></el-icon>
       </a>
       <a @click="show">
-        <el-icon size="20" ><VideoPlay /></el-icon>
+        <el-icon size="20"><VideoPlay /></el-icon>
       </a>
       <a @click="restore">
-        <el-icon size="20" ><RefreshRight /></el-icon>
+        <el-icon size="20"><RefreshRight /></el-icon>
       </a>
     </div>
     <div class="config-body">
@@ -21,62 +21,49 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, watch } from 'vue'
+<script setup>
+import { ref, watch } from 'vue'
 import SchemaForm from './SchemaForm.vue'
 
-export default defineComponent({
-  components: {
-    SchemaForm,
-  },
-  props: {
-    node: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props, { emit }) {
-    const title = ref('')
-
-    watch(
-      () => props.node,
-      () => {
-        if (props.node.data) {
-          if (props.node.data.label) {
-            title.value = props.node.data.label
-          } else {
-            title.value = '请选择节点进行配置'
-          }
-        } else {
-          title.value = '请选择节点进行配置'
-        }
-      },
-      {
-        immediate: true,
-      }
-    )
-    const save = () => {
-      emit('save')
-    }
-    const upload = () => {
-      emit('upload')
-    }
-    const show = () => {
-      emit('show')
-    }
-    const restore = () => {
-      emit('restore')
-    }
-
-    return {
-      title,
-      save,
-      upload,
-      show,
-      restore,
-    }
+const emit = defineEmits(['save', 'upload', 'show', 'restore'])
+const props = defineProps({
+  node: {
+    type: Object,
+    required: true,
   },
 })
+
+const title = ref('')
+
+watch(
+  () => props.node,
+  () => {
+    if (props.node.data) {
+      if (props.node.data.label) {
+        title.value = props.node.data.label
+      } else {
+        title.value = '请选择节点进行配置'
+      }
+    } else {
+      title.value = '请选择节点进行配置'
+    }
+  },
+  {
+    immediate: true,
+  },
+)
+const save = () => {
+  emit('save')
+}
+const upload = () => {
+  emit('upload')
+}
+const show = () => {
+  emit('show')
+}
+const restore = () => {
+  emit('restore')
+}
 </script>
 
 <style lang="scss">

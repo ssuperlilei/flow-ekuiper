@@ -6,10 +6,9 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, getCurrentInstance, nextTick, onMounted } from 'vue'
-export default defineComponent({
-  setup() {
+<script setup>
+import { ref, getCurrentInstance, nextTick, onMounted } from 'vue'
+
     const name = ref('')
     const el = ref(null)
     const df = getCurrentInstance().appContext.app._context.config.globalProperties.$df
@@ -20,11 +19,4 @@ export default defineComponent({
       const data = df.value.getNodeFromId(id.slice(5))
       name.value = data.data.name
     })
-
-    return {
-      name,
-      el,
-    }
-  },
-})
 </script>

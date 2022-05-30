@@ -51,7 +51,12 @@
               :placeholder="property.default ? property.default.toString() : ''"
               clearable
             >
-              <el-option v-for="(item, index) in property.values" :key="index" :value="item.label ? item.value : item">{{ item.label ? item.label[lang] : item }}</el-option>
+              <el-option
+                v-for="(item, index) in property.values"
+                :key="index"
+                :value="item.label ? item.value : item"
+                >{{ item.label ? item.label[lang] : item }}</el-option
+              >
             </el-select>
             <el-select
               v-if="property.control === 'col_selector' && property.type === 'array'"
@@ -75,80 +80,65 @@
   </div>
 </template>
 
-<script>
-import Schema from '../assets/Properties.json'
-import { defineComponent, ref, getCurrentInstance, watch } from 'vue'
+<script setup>
+import { ref, getCurrentInstance, watch } from 'vue'
 
-export default defineComponent({
-  name: 'ConfigCard',
-  components: {},
-  props: {
-    node: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    const lang = ref('zh')
-    const df = getCurrentInstance().appContext.app._context.config.globalProperties.$df
-    const schema = ref([])
-    const schemaDesc = ref('')
-    const record = ref({})
-
-    watch(
-      () => props.node,
-      () => {
-        if (props.node.data) {
-          if (props.node.data.properties) {
-             schema.value = props.node.data.properties
-          } else {
-            schema.value = []
-          }
-          if (props.node.data.schemaDesc) {
-             schemaDesc.value = props.node.data.schemaDesc
-          } else {
-            schemaDesc.value = ''
-          }
-          if (props.node.data.record) {
-            record.value = props.node.data.record
-          } else {
-            record.value = {}
-          }
-        } else {
-          schema.value = []
-          schemaDesc.value = ''
-        }
-      },
-      {
-        deep: true,
-        immediate: true,
-      },
-    )
-
-    const handleCreateColSelector = (val, name) => {
-      schema.value.forEach((item) => {
-        if (item.name === name) {
-          item.values.push(val)
-        }
-      })
-    }
-    const save = () => {
-      df.value.updateNodeDataFromId(props.node.id, {
-        ...props.node.data,
-        record: record.value,
-      })
-    }
-
-    return {
-      lang,
-      schema,
-      schemaDesc,
-      record,
-      handleCreateColSelector,
-      save,
-    }
+const props = defineProps({
+  node: {
+    type: Object,
+    required: true,
   },
 })
+
+const lang = ref('zh')
+const df = getCurrentInstance().appContext.app._context.config.globalProperties.$df
+const schema = ref([])
+const schemaDesc = ref('')
+const record = ref({})
+
+watch(
+  () => props.node,
+  () => {
+    if (props.node.data) {
+      if (props.node.data.properties) {
+        schema.value = props.node.data.properties
+      } else {
+        schema.value = []
+      }
+      if (props.node.data.schemaDesc) {
+        schemaDesc.value = props.node.data.schemaDesc
+      } else {
+        schemaDesc.value = ''
+      }
+      if (props.node.data.record) {
+        record.value = props.node.data.record
+      } else {
+        record.value = {}
+      }
+    } else {
+      schema.value = []
+      schemaDesc.value = ''
+    }
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+)
+
+const handleCreateColSelector = (val, name) => {
+  schema.value.forEach((item) => {
+    if (item.name === name) {
+      item.values.push(val)
+    }
+  })
+}
+const save = () => {
+  df.value.updateNodeDataFromId(props.node.id, {
+    ...props.node.data,
+    record: record.value,
+  })
+}
 </script>
 
 <style lang="scss">
