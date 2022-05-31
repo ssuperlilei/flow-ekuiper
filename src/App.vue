@@ -39,18 +39,11 @@ internalInstance.appContext.app._context.config.globalProperties.$df = editor
 const isLock = ref(false)
 const properties = ref([])
 const schemaDesc = ref('')
-const exportdf = () => {
-  const data = editor.value.export()
-  console.log(data)
-}
-
-const importdf = () => {
-  // editor.value.import(JSON.parse(editor.value.export()))
-}
 
 const allowDrop = (ev) => {
   ev.preventDefault()
 }
+// 拖拽结束，释放节点，获取节点信息
 const drop = (ev) => {
   ev.preventDefault()
   const name = ev.dataTransfer.getData('getNodeName')
@@ -72,6 +65,7 @@ const drop = (ev) => {
   addNodeToDrawFlow(name, ev.clientX, ev.clientY, label, type, group, properties.value, schemaDesc.value)
 }
 
+// 添加节点
 const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group, properties, schemaDesc) => {
   if (editor.value.editor_mode !== 'fixed') {
     // eslint-disable-next-line
@@ -122,6 +116,8 @@ const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group, properties, s
     )
   }
 }
+
+// 保存节点信息至 localStorage
 const onSave = () => {
   const exportValue = editor.value.export()
   console.log('原始数据', exportValue)
@@ -146,6 +142,8 @@ const onShow = () => {
   const nodes = deserializeNodes(flowData.graph)
   editor.value.import(nodes)
 }
+
+// 改变锁定状态
 const changeLock = () => {
   isLock.value = !isLock.value
   if (isLock.value) {
@@ -154,12 +152,18 @@ const changeLock = () => {
     editor.value.editor_mode = 'edit'
   }
 }
+
+// 缩小
 const zoomOut = () => {
   editor.value.zoom_out()
 }
+
+// 还原初始大小
 const zoomReset = () => {
   editor.value.zoom_reset()
 }
+
+// 放大
 const zoomIn = () => {
   editor.value.zoom_in()
 }
@@ -172,11 +176,15 @@ onMounted(() => {
   editor.value = new Drawflow(id, Vue, internalInstance.appContext.app._context)
   editor.value.registerNode('BasicNode', BasicNode, {}, {})
   editor.value.start()
+
+  // 监听节点选中事件
   editor.value.on('nodeSelected', (nodeId) => {
     const data = editor.value.getNodeFromId(nodeId)
     selectNode.value = data
     isSelectNode.value = true
   })
+
+  // 监听节点取消选中事件
   editor.value.on('nodeUnselected', () => {
     isSelectNode.value = false
     selectNode.value = {}

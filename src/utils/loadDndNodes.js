@@ -46,6 +46,25 @@ const loadDndNodes = () => {
     },
   ]
   const dndNodes = [...sourceDndNodes, ...sinkDndNodes, ...functionDndNodes, ...chartDndNodes]
+  // const nodeGroups = [
+  //   {
+  //     groupName: '数据源',
+  //     groupValue: 'source',
+  //     groupType: []
+  //   },
+  //   {
+  //     groupName: '数据处理',
+  //     groupValue: 'function',
+  //   },
+  //   {
+  //     groupName: '数据目标',
+  //     groupValue: 'sink',
+  //   },
+  //   {
+  //     groupName: '图表',
+  //     groupValue: 'chart',
+  //   },
+  // ]
   return {
     groups,
     dndNodes,

@@ -1,14 +1,5 @@
 <template>
   <div class="flow-sidebar">
-    <div className="search-bar">
-      <el-input
-        clearable
-        v-model="searchValue"
-        suffix-icon="Search"
-        placeholder="Enter something..."
-        @change="handlerSearch"
-      />
-    </div>
     <template v-for="group in groups">
       <div class="group-name">
         {{ group.groupName }}
@@ -34,21 +25,13 @@ import { ref } from 'vue'
 
 const groups = ref([])
 const dndNodes = ref([])
-const searchValue = ref('')
 const showNodes = ref([])
 
 groups.value = loadDndNodes().groups
 dndNodes.value = loadDndNodes().dndNodes
 showNodes.value = _.cloneDeep(dndNodes.value)
 
-const handlerSearch = (value) => {
-  if (value) {
-    showNodes.value = dndNodes.value.filter((node) => node.label.includes(value))
-  } else {
-    showNodes.value = _.cloneDeep(dndNodes.value)
-  }
-}
-
+// 拖拽开始
 const dragstart = (event, node) => {
   event.dataTransfer.setData('getNodeName', node.value)
   event.dataTransfer.setData('getNodeLabel', node.label)
@@ -73,13 +56,6 @@ const dragstart = (event, node) => {
     color: #cfcfcf;
     font-size: 14px;
     padding: 12px 0;
-  }
-  .search-bar {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  .search-bar .ant-input {
-    border: none;
   }
   .dndnode {
     height: 42px;
