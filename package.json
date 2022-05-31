@@ -10,6 +10,7 @@
     "@element-plus/icons-vue": "^2.0.0-beta.0",
     "axios": "^0.27.2",
     "drawflow": "^0.0.58",
+    "echarts": "^5.3.2",
     "element-plus": "^2.2.2",
     "loadsh": "^0.0.4",
     "sass": "~1.32.13",
