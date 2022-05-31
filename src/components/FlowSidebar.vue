@@ -1,6 +1,6 @@
 <template>
   <div class="flow-sidebar">
-    <template v-for="group in groups">
+    <!-- <template v-for="group in groups">
       <div class="group-name">
         {{ group.groupName }}
       </div>
@@ -14,14 +14,19 @@
           <div class="dnd-node-label">{{ node.label }}</div>
         </div>
       </div>
-    </template>
+    </template> -->
+    <el-menu>
+      <menu-tree :menuData="nodeGroups"></menu-tree>
+    </el-menu>
   </div>
 </template>
 
 <script setup>
 import loadDndNodes from '@/utils/loadDndNodes'
-import _ from 'lodash'
 import { ref } from 'vue'
+import { arrToTree } from '@/utils'
+import _ from 'lodash'
+import MenuTree from './MenuTree.vue'
 
 const groups = ref([])
 const dndNodes = ref([])
@@ -30,15 +35,8 @@ const showNodes = ref([])
 groups.value = loadDndNodes().groups
 dndNodes.value = loadDndNodes().dndNodes
 showNodes.value = _.cloneDeep(dndNodes.value)
-
-// 拖拽开始
-const dragstart = (event, node) => {
-  event.dataTransfer.setData('getNodeName', node.value)
-  event.dataTransfer.setData('getNodeLabel', node.label)
-  event.dataTransfer.setData('getNodeType', node.type)
-  event.dataTransfer.setData('getNodeGroup', node.group)
-  event.dataTransfer.effectAllowed = 'move'
-}
+console.log(arrToTree(loadDndNodes().nodeGroups))
+const nodeGroups = arrToTree(loadDndNodes().nodeGroups)
 </script>
 
 <style lang="scss">

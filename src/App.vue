@@ -52,6 +52,7 @@ const drop = (ev) => {
   const group = ev.dataTransfer.getData('getNodeGroup')
   const _schema = Schema[group]
   const currentSchema = _schema[name]
+  console.log(currentSchema, name)
   if (currentSchema.properties) {
     properties.value = currentSchema.properties
     schemaDesc.value = currentSchema.about.description[lang.value]
@@ -210,7 +211,7 @@ onMounted(() => {
   width: 100%;
   // padding: 16px 8px;
   .sidebar {
-    width: 15%;
+    width: 20%;
     height: 100%;
   }
   .config-card {
@@ -220,7 +221,7 @@ onMounted(() => {
   #drawflow {
     display: block;
     position: relative;
-    width: 60%;
+    width: 55%;
     height: 100%;
   }
   .controls {
