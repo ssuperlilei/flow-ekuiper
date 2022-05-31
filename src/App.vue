@@ -124,6 +124,7 @@ const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group, properties, s
 }
 const onSave = () => {
   const exportValue = editor.value.export()
+  console.log('原始数据', exportValue)
   localStorage.setItem('flowKey', JSON.stringify(exportValue))
 }
 const onRestore = () => {
@@ -135,6 +136,7 @@ const uploadNodes = () => {
   const exportValue = editor.value.export()
   const data = exportValue.drawflow.Home.data
   const flowData = serializedUpload(data)
+  console.log('接口保存数据', flowData)
   localStorage.setItem('flowData', JSON.stringify(flowData))
 }
 

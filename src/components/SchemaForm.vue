@@ -69,6 +69,17 @@
             >
               <el-option v-for="(value, index) in property.values" :key="index" :value="value">{{ value }}</el-option>
             </el-select>
+            <el-select
+              v-if="property.control === 'list' && property.type === 'list_string'"
+              v-model="record[property.name]"
+              :placeholder="property.default ? property.default.toString() : ''"
+              filterable
+              multiple
+              allow-create
+              @on-create="(val) => handleCreateColSelector(val, property.name)"
+            >
+              <el-option v-for="(value, index) in property.values" :key="index" :value="value">{{ value }}</el-option>
+            </el-select>
           </el-form-item>
         </el-col>
       </el-row>

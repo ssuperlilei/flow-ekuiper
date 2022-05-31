@@ -1,16 +1,16 @@
 <template>
   <div class="flow-config-card">
     <div class="config-header">
-      <a @click="save">
+      <a @click="save" title="保存 localStorage">
         <el-icon size="20"><DocumentAdd /></el-icon>
       </a>
-      <a @click="upload">
+      <a @click="upload" title="保存 api">
         <el-icon size="20"><UploadFilled /></el-icon>
       </a>
-      <a @click="show">
+      <a @click="show" title="恢复API数据">
         <el-icon size="20"><VideoPlay /></el-icon>
       </a>
-      <a @click="restore">
+      <a @click="restore" title="恢复 localStorage 数据">
         <el-icon size="20"><RefreshRight /></el-icon>
       </a>
     </div>
@@ -85,6 +85,7 @@ const restore = () => {
     font-size: 20px;
     a {
       color: #fff;
+      cursor: pointer;
       &:hover {
         color: #00b173;
       }
