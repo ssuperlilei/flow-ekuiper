@@ -23,7 +23,7 @@ const serializedExpr = (name, properties, record) => {
             params.push(null)
             break;
         }
-        
+
       }
     }
   }

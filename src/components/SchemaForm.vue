@@ -55,7 +55,8 @@
                 v-for="(item, index) in property.values"
                 :key="index"
                 :value="item.label ? item.value : item"
-                >{{ item.label ? item.label[lang] : item }}</el-option
+                :label="item.label ? item.label[lang] : item"
+                ></el-option
               >
             </el-select>
             <el-select

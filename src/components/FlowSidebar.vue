@@ -45,7 +45,7 @@ const handlerSearch = (value) => {
   if (value) {
     showNodes.value = dndNodes.value.filter((node) => node.label.includes(value))
   } else {
-   showNodes.value = _.cloneDeep(dndNodes.value) 
+    showNodes.value = _.cloneDeep(dndNodes.value)
   }
 }
 

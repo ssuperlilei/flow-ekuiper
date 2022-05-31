@@ -521,8 +521,8 @@
           "zh": "https://github.com/lf-edge/ekuiper/blob/master/docs/zh/plugins/sinks/zmq.md"
         },
         "description": {
-          "en": "neuron",
-          "zh": "neuron"
+          "en": "neuron source",
+          "zh": "neuron source"
         }
       },
       "libs": [""],
@@ -609,7 +609,36 @@
                 "en": "Filter type",
                 "zh": "滤波器类型"
               },
-              "values": [0, 1, 3, 4]
+              "values": [
+                {
+                  "value": 0,
+                  "label": {
+                    "en": "lowpass",
+                    "zh": "低通"
+                  }
+                },
+                {
+                  "value": 1,
+                  "label": {
+                    "en": "highpass",
+                    "zh": "高通"
+                  }
+                },
+                {
+                  "value": 3,
+                  "label": {
+                    "en": "bandpass",
+                    "zh": "带通"
+                  }
+                },
+                {
+                  "value": 4,
+                  "label": {
+                    "en": "bandstop",
+                    "zh": "带阻"
+                  }
+                }
+              ]
             },
             {
               "name": "order",
@@ -709,7 +738,34 @@
                 "en": "Filter type",
                 "zh": "滤波器类型"
               },
-              "values": [0, 1, 3, 4]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "lowpass",
+                  "zh": "低通"
+                }
+              },
+              {
+                "value": 1,
+                "label": {
+                  "en": "highpass",
+                  "zh": "高通"
+                }
+              },
+              {
+                "value": 3,
+                "label": {
+                  "en": "bandpass",
+                  "zh": "带通"
+                }
+              },
+              {
+                "value": 4,
+                "label": {
+                  "en": "bandstop",
+                  "zh": "带阻"
+                }
+              }]
             },
             {
               "name": "freqs",
@@ -866,7 +922,27 @@
                 "en": "regression type",
                 "zh": "回归类型"
               },
-              "values": [0, 1, 2]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "Maximum and minimum normalization",
+                  "zh": "最大最小值标准化"
+                }
+              },
+              {
+                "value": 1,
+                "label": {
+                  "en": "Z_Score normalization",
+                  "zh": "Z_Score标准化"
+                }
+              },
+              {
+                "value": 2,
+                "label": {
+                  "en": "sigmoid",
+                  "zh": "sigmoid"
+                }
+              }]
             }
           ]
         }
@@ -939,7 +1015,20 @@
                 "en": "regression type",
                 "zh": "回归类型"
               },
-              "values": [0, 1]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "Sort by ascending",
+                  "zh": "升序排列"
+                }
+              },
+              {
+                "value": 1,
+                "label": {
+                  "en": "Sort by descending",
+                  "zh": "降序排列"
+                }
+              }]
             }
           ]
         }
@@ -1011,7 +1100,37 @@
                 "en": "Dimension reduction method",
                 "zh": "降维方式"
               },
-              "values": [0, 1, 2, 3, 4]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "mean",
+                  "zh": "均值"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "sum",
+                  "zh": "总和"
+                }
+              }, {
+                "value": 2,
+                "label": {
+                  "en": "maximum",
+                  "zh": "最大"
+                }
+              }, {
+                "value": 3,
+                "label": {
+                  "en": "minimum",
+                  "zh": "最小"
+                }
+              }, {
+                "value": 4,
+                "label": {
+                  "en": "K-means",
+                  "zh": "K-均值"
+                }
+              }]
             }
           ]
         }
@@ -1069,7 +1188,37 @@
                 "en": "Degree of the polynomial used for smoothing",
                 "zh": "平滑程度"
               },
-              "values": [0, 1, 2, 3, 4]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "weak",
+                  "zh": "弱"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "weaker",
+                  "zh": "较弱"
+                }
+              }, {
+                "value": 2,
+                "label": {
+                  "en": "moderate",
+                  "zh": "适中"
+                }
+              }, {
+                "value": 3,
+                "label": {
+                  "en": "stronger",
+                  "zh": "较强"
+                }
+              }, {
+                "value": 4,
+                "label": {
+                  "en": "strong",
+                  "zh": "强"
+                }
+              }]
             }
           ]
         }
@@ -1141,7 +1290,19 @@
                 "en": "Type",
                 "zh": "谱类型"
               },
-              "values": [0, 1]
+              "values": [{
+                "value": 0,
+                "label": {
+                  "en": "single-sided spectrum",
+                  "zh": "单边谱"
+                }
+              }, {
+                "value": 1,
+                "label": {
+                  "en": "double-sided spectrum",
+                  "zh": "双边谱"
+                }
+              }]
             }
           ]
         }
