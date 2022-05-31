@@ -15,7 +15,7 @@
         </div>
       </div>
     </template> -->
-    <el-menu>
+    <el-menu :default-openeds="defaultOpeneds">
       <menu-tree :menuData="nodeGroups"></menu-tree>
     </el-menu>
   </div>
@@ -36,6 +36,7 @@ groups.value = loadDndNodes().groups
 dndNodes.value = loadDndNodes().dndNodes
 showNodes.value = _.cloneDeep(dndNodes.value)
 console.log(arrToTree(loadDndNodes().nodeGroups))
+const defaultOpeneds = ref(['1', '2', '3', '4'])
 const nodeGroups = arrToTree(loadDndNodes().nodeGroups)
 </script>
 
