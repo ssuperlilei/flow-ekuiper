@@ -7,8 +7,15 @@
         </template>
         <menu-tree :menuData="menu.children"></menu-tree>
       </el-sub-menu>
-      <el-menu-item :key="menu.id + 'key'" :index="menu.id" v-else draggable="true" @dragstart="dragstart($event, menu)">
-       <template #title>
+      <el-menu-item
+        :key="menu.id + 'key'"
+        :index="menu.id"
+        v-else
+        draggable="true"
+        @dragstart="dragstart($event, menu)"
+        class="dbnode"
+      >
+        <template #title>
           <span>{{ menu.label }}</span>
         </template>
       </el-menu-item>
@@ -34,3 +41,25 @@ const dragstart = (event, node) => {
   event.dataTransfer.effectAllowed = 'move'
 }
 </script>
+
+<style lang="scss">
+.dbnode {
+  height: 42px;
+  padding: 4px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  background: #393f4e;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  &:hover {
+    border: 1px solid #00b173;
+  }
+}
+</style>
