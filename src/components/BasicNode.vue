@@ -7,7 +7,7 @@
       >
     </div>
   </div>
-  <el-dialog v-model="dialogVisible" title="折线图" width="90%" draggable @opened="initEchart" append-to-body>
+  <el-dialog v-model="dialogVisible" title="折线图" width="90%" draggable @opened="initEchart" append-to-body @closed="chartClosed">
     <div ref="lineChartDom" style="width: 100%; height: 400px"></div>
   </el-dialog>
 </template>
@@ -27,7 +27,7 @@ const dialogVisible = ref(false)
 const lineChartOption = ref({})
 const lineChart = ref({})
 const initEchart = () => {
-  if (!lineChart.value.length) {
+  if (!lineChart.value?.length) {
     lineChart.value = markRaw(echarts.init(lineChartDom.value))
   }
   lineChartOption.value = {
@@ -93,6 +93,11 @@ const initEchart = () => {
     ],
   }
   lineChart.value.setOption(lineChartOption.value)
+}
+
+const chartClosed = () => {
+  lineChart.value.dispose()
+  lineChart.value = null
 }
 
 onMounted(async () => {

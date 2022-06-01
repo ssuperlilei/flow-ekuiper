@@ -8,16 +8,16 @@ const serializedExpr = (name, properties, record) => {
       } else {
         switch (element.type) {
           case 'number':
-            params.push(0)
+            params.push('0')
             break;
           case 'string':
             params.push('')
             break;
           case 'boolean':
-            params.push(false)
+            params.push('false')
             break;
           case 'array':
-            params.push([])
+            params.push('[]')
             break;
           default:
             params.push(null)
