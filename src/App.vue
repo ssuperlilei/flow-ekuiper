@@ -52,7 +52,6 @@ const drop = (ev) => {
   const group = ev.dataTransfer.getData('getNodeGroup')
   const _schema = Schema[group]
   const currentSchema = _schema[name]
-  console.log(currentSchema, name)
   if (currentSchema.properties) {
     properties.value = currentSchema.properties
     schemaDesc.value = currentSchema.about.description[lang.value]

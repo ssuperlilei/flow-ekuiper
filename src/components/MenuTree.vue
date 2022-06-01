@@ -27,7 +27,6 @@ defineProps(['menuData'])
 
 // 拖拽开始
 const dragstart = (event, node) => {
-  console.log(event, node)
   event.dataTransfer.setData('getNodeName', node.name)
   event.dataTransfer.setData('getNodeLabel', node.label)
   event.dataTransfer.setData('getNodeType', node.type)
