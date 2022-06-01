@@ -32,6 +32,9 @@ nodeGroups.value = arrToTree(loadDndNodes().nodeGroups)
   box-shadow: 0px 2px 4px 0px #00000080;
   height: 100%;
   overflow: scroll;
+  .el-menu {
+    border-right: none;
+  }
   .description {
     margin-bottom: 10px;
   }
