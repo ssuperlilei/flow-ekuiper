@@ -1030,8 +1030,8 @@
           "website": "https://www.emqx.io"
         },
         "description": {
-          "en": "Example python plugin for butterworth filter",
-          "zh": "示例python插件IRR滤波-巴特沃斯滤波"
+          "en": "butterworth filter",
+          "zh": "巴特沃斯滤波"
         }
       },
       "functions": [
@@ -1175,8 +1175,8 @@
           "website": "https://www.emqx.io"
         },
         "description": {
-          "en": "Example python plugin for chebyshev filter",
-          "zh": "示例python插件IRR滤波-使用切比雪夫滤波"
+          "en": "chebyshev filter",
+          "zh": "使用切比雪夫滤波"
         }
       },
       "functions": [

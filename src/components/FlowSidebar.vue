@@ -3,6 +3,7 @@
     <el-menu
       background-color="#424755"
       text-color="#fff"
+      active-text-color="#fff"
       :default-openeds="defaultOpeneds"
     >
       <menu-tree :menuData="nodeGroups"></menu-tree>
