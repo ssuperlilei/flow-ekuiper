@@ -7,9 +7,9 @@
         </template>
         <menu-tree :menuData="menu.children"></menu-tree>
       </el-sub-menu>
-      <el-menu-item :key="menu.id + 'key'" :index="menu.id" v-else>
+      <el-menu-item :key="menu.id + 'key'" :index="menu.id" v-else draggable="true" @dragstart="dragstart($event, menu)">
        <template #title>
-          <span draggable="true" @dragstart="dragstart($event, menu)">{{ menu.label }}</span>
+          <span>{{ menu.label }}</span>
         </template>
       </el-menu-item>
     </template>

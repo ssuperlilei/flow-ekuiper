@@ -1,6 +1,10 @@
 <template>
   <div class="flow-sidebar">
-    <el-menu :default-openeds="defaultOpeneds">
+    <el-menu
+      background-color="#424755"
+      text-color="#fff"
+      :default-openeds="defaultOpeneds"
+    >
       <menu-tree :menuData="nodeGroups"></menu-tree>
     </el-menu>
   </div>
