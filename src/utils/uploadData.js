@@ -3,7 +3,7 @@ const serializedExpr = (name, properties, record) => {
   for (const key in properties) {
     if (properties.hasOwnProperty(key)) {
       const element = properties[key]
-      if (record[element.name]) {
+      if (record && record[element.name]) {
         params.push(record[element.name])
       } else {
         switch (element.type) {
