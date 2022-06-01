@@ -1,7 +1,5 @@
 import axios from 'axios'
-import { Message } from 'view-design'
-import router from '../router'
-import store from '../store'
+import { ElMessage } from 'element-plus'
 
 const baseURL = '/api'
 const lang = localStorage.getItem('language')
@@ -17,30 +15,30 @@ Object.assign(axios.defaults, {
 })
 let messageNumber = 0
 
-const getRefreshToken = async () => {
-  const { user } = store.state
-  if (user.token && user.refreshToken) {
-    const { username, userId, remember, ...tokenBody } = user
-    try {
-      const res = await axios.post('/token', { ...tokenBody })
-      const refreshUser = {
-        username,
-        userId,
-        remember,
-        token: res.data.token,
-        refreshToken: tokenBody.refreshToken,
-      }
-      store.dispatch('UPDATE_USER_INFO', refreshUser)
-      return refreshUser.token
-    } catch (error) {
-      setTimeout(() => {
-        router.push({ path: '/login' })
-      })
-      return Promise.reject(error)
-    }
-  }
-  return false
-}
+// const getRefreshToken = async () => {
+//   const { user } = store.state
+//   if (user.token && user.refreshToken) {
+//     const { username, userId, remember, ...tokenBody } = user
+//     try {
+//       const res = await axios.post('/token', { ...tokenBody })
+//       const refreshUser = {
+//         username,
+//         userId,
+//         remember,
+//         token: res.data.token,
+//         refreshToken: tokenBody.refreshToken,
+//       }
+//       store.dispatch('UPDATE_USER_INFO', refreshUser)
+//       return refreshUser.token
+//     } catch (error) {
+//       setTimeout(() => {
+//         router.push({ path: '/login' })
+//       })
+//       return Promise.reject(error)
+//     }
+//   }
+//   return false
+// }
 
 const handleError = async (error) => {
   const originalRequest = error.config
@@ -60,25 +58,15 @@ const handleError = async (error) => {
   if (url.indexOf('/prebuild') === -1 && messageNumber < 3) {
     // 错误提示最多提示3条 ，用户手动关闭
     messageNumber += 1
-    const stop = Message.error({
+    ElMessage({
+      dangerouslyUseHTMLString: true,
+      type: 'error',
       duration: 0,
-      render: (h) => {
-        return h('span', [
-          data,
-          h('i', {
-            class: 'ivu-icon ivu-icon-md-close',
-            style: {
-              cursor: 'pointer',
-            },
-            on: {
-              click: () => {
-                messageNumber -= 1
-                stop() // 点击操作事件
-              },
-            },
-          }),
-        ])
+      showClose: true,
+      onClose: () => {
+        messageNumber -= 1
       },
+      message: `<span>${data}</span>`,
     })
   }
   return Promise.reject(error)
@@ -86,8 +74,6 @@ const handleError = async (error) => {
 
 axios.interceptors.request.use(
   (config) => {
-    const { user } = store.state
-    config.headers.Authorization = user.token
     config.params = config.params || {}
     return config
   },

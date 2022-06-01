@@ -27,9 +27,11 @@ import FlowSidebar from '@/components/FlowSidebar.vue'
 import ConfigCard from '@/components/ConfigCard.vue'
 import BasicNode from '@/components/BasicNode.vue'
 import Schema from './assets/Properties.json'
-import { onMounted, shallowRef, h, getCurrentInstance, render, ref } from 'vue'
+import { onMounted, shallowRef, h, getCurrentInstance, render, ref, watch } from 'vue'
 import serializedUpload from '@/utils/uploadData'
 import deserializeNodes from '@/utils/handleNodes'
+import { createRule, getRule } from '@/api/flow'
+import { ElMessage } from 'element-plus'
 
 const editor = shallowRef({})
 const lang = ref('zh')
@@ -134,6 +136,18 @@ const uploadNodes = () => {
   const flowData = serializedUpload(data)
   console.log('接口保存数据', flowData)
   localStorage.setItem('flowData', JSON.stringify(flowData))
+  const body = {
+    id: 'test07',
+    name: 'test07',
+    ...flowData
+  }
+  createRule(body).then(() => {
+    ElMessage({
+      message: '保存成功',
+      type: 'success'
+    })
+  }).catch(() => {
+  })
 }
 
 // 测试接口获取的值，展示在页面上
@@ -171,6 +185,14 @@ const zoomIn = () => {
 let selectNode = ref({})
 let isSelectNode = ref(false)
 
+watch(editor, (newVal, oldVal) => {
+  if (newVal.editor_mode === 'fixed') {
+    isLock.value = true
+  } else {
+    isLock.value = false
+  }
+})
+
 onMounted(() => {
   const id = document.getElementById('drawflow')
   editor.value = new Drawflow(id, Vue, internalInstance.appContext.app._context)
@@ -189,6 +211,18 @@ onMounted(() => {
     isSelectNode.value = false
     selectNode.value = {}
   })
+
+  // 获取query参数
+  const query = window.location.search.substring(1)
+  const ruleId = query.split('=')[1]
+  if (ruleId) {
+    getRule(ruleId).then(res => {
+      console.log('获取规则', res.data.graph)
+      const nodes = deserializeNodes(res.data.graph)
+      editor.value.import(nodes)
+    })
+  }
+
 })
 </script>
 

@@ -3,14 +3,14 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: 8060,
-    // proxy: {
-    //   '/api': {
-    //     target: ''∂,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '/api': '4',
-    //     },
-    //   },
-    // },
+    proxy: {
+      '/api': {
+        target: 'http://0.0.0.0:9081/',
+        changeOrigin: true,
+        pathRewrite: {
+          '/api': '',
+        },
+      },
+    },
   },
 }

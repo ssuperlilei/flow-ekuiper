@@ -7,7 +7,7 @@ const deserializeNodes = (graph) => {
     }
   }
   Object.values(graph.nodes).forEach((item) => {
-    nodes.drawflow.Home.data[item.node.id] = item.node
+    nodes.drawflow.Home.data[item.props.node.id] = item.props.node
   })
   return nodes
 }

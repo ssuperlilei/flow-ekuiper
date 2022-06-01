@@ -4,6 +4,9 @@ const serializedExpr = (name, properties, record) => {
     if (properties.hasOwnProperty(key)) {
       const element = properties[key]
       if (record && record[element.name]) {
+        if (element.type === 'array') {
+          params.push(`[${record[element.name].map(item => `'${item}'`).join(',')}]`)
+        }
         params.push(record[element.name])
       } else {
         switch (element.type) {
@@ -54,17 +57,17 @@ const serializedUpload = (data) => {
         nodeType: value.data.group,
         props: {
           expr: serializedExpr(value.data.name, value.data.properties, value.data.record),
+          node: value,
         },
-        node: value,
       }
     } else {
       nodes[value.data.name] = {
         type: value.data.type,
         nodeType: value.data.group,
         props: {
-          ...value.data.record
+          ...value.data.record,
+          node: value,
         },
-        node: value,
       }
     }
     if (value.data.group === 'source') {
