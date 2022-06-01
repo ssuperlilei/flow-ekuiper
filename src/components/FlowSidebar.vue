@@ -1,20 +1,5 @@
 <template>
   <div class="flow-sidebar">
-    <!-- <template v-for="group in groups">
-      <div class="group-name">
-        {{ group.groupName }}
-      </div>
-      <div v-for="node in showNodes.filter((dndNode) => dndNode.group === group.groupValue)">
-        <div
-          :class="['dndnode', node.type]"
-          draggable="true"
-          :key="`${node.value}-${node.type}`"
-          @dragstart="dragstart($event, node)"
-        >
-          <div class="dnd-node-label">{{ node.label }}</div>
-        </div>
-      </div>
-    </template> -->
     <el-menu :default-openeds="defaultOpeneds">
       <menu-tree :menuData="nodeGroups"></menu-tree>
     </el-menu>
@@ -28,16 +13,10 @@ import { arrToTree } from '@/utils'
 import _ from 'lodash'
 import MenuTree from './MenuTree.vue'
 
-const groups = ref([])
-const dndNodes = ref([])
-const showNodes = ref([])
+const nodeGroups = ref([])
 
-groups.value = loadDndNodes().groups
-dndNodes.value = loadDndNodes().dndNodes
-showNodes.value = _.cloneDeep(dndNodes.value)
-console.log(arrToTree(loadDndNodes().nodeGroups))
 const defaultOpeneds = ref(['1', '2', '3', '4'])
-const nodeGroups = arrToTree(loadDndNodes().nodeGroups)
+nodeGroups.value = arrToTree(loadDndNodes().nodeGroups)
 </script>
 
 <style lang="scss">
