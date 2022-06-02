@@ -94,6 +94,7 @@
 
 <script setup>
 import { ref, getCurrentInstance, watch } from 'vue'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps({
   node: {
@@ -150,6 +151,7 @@ const save = () => {
     ...props.node.data,
     record: record.value,
   })
+  ElMessage.success('配置保存成功')
 }
 </script>
 

@@ -123,9 +123,11 @@ const addNodeToDrawFlow = (name, pos_x, pos_y, label, type, group, properties, s
 const onSave = () => {
   const exportValue = editor.value.export()
   console.log('原始数据', exportValue)
+  ElMessage.success('本地保存成功')
   localStorage.setItem('flowKey', JSON.stringify(exportValue))
 }
 const onRestore = () => {
+  ElMessage.success('数据恢复成功')
   const flow = JSON.parse(localStorage.getItem('flowKey'))
   editor.value.import(flow)
 }
@@ -244,17 +246,17 @@ onMounted(() => {
   width: 100%;
   // padding: 16px 8px;
   .sidebar {
-    width: 20%;
+    width: 18%;
     height: 100%;
   }
   .config-card {
-    width: 25%;
+    width: 20%;
     height: 100%;
   }
   #drawflow {
     display: block;
     position: relative;
-    width: 55%;
+    width: 62%;
     height: 100%;
   }
   .controls {

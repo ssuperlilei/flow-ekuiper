@@ -7,11 +7,11 @@
       <a @click="upload" title="保存 api">
         <el-icon size="20"><UploadFilled /></el-icon>
       </a>
-      <a @click="show" title="恢复API数据">
-        <el-icon size="20"><VideoPlay /></el-icon>
-      </a>
       <a @click="restore" title="恢复 localStorage 数据">
         <el-icon size="20"><RefreshRight /></el-icon>
+      </a>
+      <a @click="show" title="运行">
+        <el-icon size="20"><VideoPlay /></el-icon>
       </a>
     </div>
     <div class="config-body">
@@ -69,14 +69,11 @@ const restore = () => {
 <style lang="scss">
 .flow-config-card {
   color: #fff;
-  padding: 0;
   background-color: #414756;
-  padding: 15px 10px;
   box-shadow: 2px 0px 4px 0px #00000080;
   height: 100%;
   overflow-y: scroll;
   .config-header {
-    height: 48px;
     padding: 12px 24px;
     margin-bottom: 12px;
     border-bottom: 1px solid #495062;
